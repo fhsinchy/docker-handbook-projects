@@ -129,4 +129,10 @@ dist/
 npm-debug.log
 yarn-error.log
 
+### Vite ###
+node_modules
+.DS_Store
+dist
+*.local
+
 # End of https://www.toptal.com/developers/gitignore/api/node,vue,vuejs
