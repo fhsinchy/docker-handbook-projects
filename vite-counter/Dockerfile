@@ -1,4 +1,5 @@
-FROM node as builder
+# first stage
+FROM node as stage_one
 
 WORKDIR /usr/app
 
@@ -9,6 +10,7 @@ COPY . .
 
 RUN npm run build
 
+# second stage
 FROM nginx
 
-COPY --from=builder /usr/app/dist /usr/share/nginx/html
+COPY --from=stage_one /usr/app/dist /usr/share/nginx/html
