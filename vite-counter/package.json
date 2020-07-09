@@ -1,6 +1,5 @@
 {
-  "name": "client",
-  "version": "0.0.0",
+  "name": "vite-counter",
   "scripts": {
     "dev": "vite",
     "build": "vite build"
