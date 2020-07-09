@@ -1,16 +1,14 @@
-# first stage
-FROM node as stage_one
+FROM node as builder
 
 WORKDIR /usr/app
 
-COPY package.json .
+COPY ./package.json ./
 RUN npm install
 
 COPY . .
 
 RUN npm run build
 
-# second stage
 FROM nginx
 
-COPY --from=stage_one /usr/app/dist /usr/share/nginx/html
+COPY --from=builder /usr/app/dist /usr/share/nginx/html
