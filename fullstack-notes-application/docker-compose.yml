@@ -37,4 +37,3 @@ services:
             dockerfile: Dockerfile.dev
         ports: 
             - 80:80
-        restart: always
