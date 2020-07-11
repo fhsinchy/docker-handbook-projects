@@ -1,0 +1,40 @@
+version: "3.8"
+
+services: 
+    db:
+        image: postgres:12
+        volumes: 
+            - ./docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
+        environment:
+            POSTGRES_PASSWORD: 63eaQB9wtLqmNBpg
+            POSTGRES_DB: notesdb
+    api:
+        build: 
+            context: ./api
+            dockerfile: Dockerfile.dev
+        volumes: 
+            - /usr/app/node_modules
+            - ./api:/usr/app
+        environment: 
+            DB_CONNECTION: pg
+            DB_HOST: db ## same as the database service name
+            DB_PORT: 5432
+            DB_USER: postgres
+            DB_DATABASE: notesdb
+            DB_PASSWORD: 63eaQB9wtLqmNBpg
+    client:
+        build:
+            context: ./client
+            dockerfile: Dockerfile.dev
+        volumes: 
+            - /usr/app/node_modules
+            - ./client:/usr/app
+        environment: 
+            VUE_APP_API_URL: /api
+    nginx:
+        build:
+            context: ./nginx
+            dockerfile: Dockerfile.dev
+        ports: 
+            - 80:80
+        restart: always
