@@ -4,7 +4,7 @@
 
 | :bell: NOTIFICATION |
 |:--------------------|
-| This branch contains the uncontainzerized versions of the projects. If you want the containerized ones, please check the [containerized](https://github.com/fhsinchy/docker-handbook-projects/tree/containerized/) branch. |
+| This branch contains the containerized versions of the projects. If you want the uncontainerized ones, please check the [master](https://github.com/fhsinchy/docker-handbook-projects/tree/master/) branch. |
 
 This repository holds the code for my [__Docker Handbook__](https://www.freecodecamp.org/news/the-docker-handbook/) article on [__freeCodecamp__](https://freecodecamp.org). In the article the readers work through __six__ projects with increasing complexity. These projects are as follows:
 
