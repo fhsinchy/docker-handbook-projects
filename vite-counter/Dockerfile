@@ -1,5 +1,7 @@
 FROM node as builder
 
+EXPOSE 80
+
 WORKDIR /usr/app
 
 COPY ./package.json ./
