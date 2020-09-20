@@ -2,9 +2,9 @@ version: "3.8"
 
 services: 
     db:
-        image: postgres:12
-        volumes: 
-            - ./docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
+        build:
+            context: ./db
+            dockerfile: Dockerfile.dev
         environment:
             POSTGRES_PASSWORD: 63eaQB9wtLqmNBpg
             POSTGRES_DB: notesdb
