@@ -1,6 +1,6 @@
 FROM ubuntu:latest
 
-ARG DIRNAME="nginx-src"
+ARG DIRNAME="nginx"
 ARG FILENAME="nginx-1.19.2"
 ARG EXTENSION="tar.gz"
 
