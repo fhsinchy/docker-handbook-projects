@@ -1,6 +1,4 @@
-FROM node as builder
-
-EXPOSE 80
+FROM node:lts as builder
 
 WORKDIR /usr/app
 
@@ -11,6 +9,8 @@ COPY . .
 
 RUN npm run build
 
-FROM nginx
+FROM nginx:mainline
+
+EXPOSE 80
 
 COPY --from=builder /usr/app/dist /usr/share/nginx/html
