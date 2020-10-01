@@ -135,4 +135,7 @@ node_modules
 dist
 *.local
 
+## Docker ##
+docker-volumes-data
+
 # End of https://www.toptal.com/developers/gitignore/api/node,vue,vuejs
