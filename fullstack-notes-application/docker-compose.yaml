@@ -5,6 +5,8 @@ services:
         build:
             context: ./db
             dockerfile: Dockerfile.dev
+        volumes: 
+            - ./docker-volumes-data/db:/var/lib/postgresql/data
         environment:
             POSTGRES_PASSWORD: 63eaQB9wtLqmNBpg
             POSTGRES_DB: notesdb
