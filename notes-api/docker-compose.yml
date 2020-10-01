@@ -3,6 +3,7 @@ version: "3.8"
 services: 
     db:
         image: postgres:12
+        container_name: notes-db
         volumes: 
             - ./docker-volumes-data/db:/var/lib/postgresql/data
         environment:
@@ -12,6 +13,8 @@ services:
         build:
             context: .
             dockerfile: Dockerfile.dev
+        image: notes
+        container_name: notes-api
         environment: 
             DB_CONNECTION: pg
             DB_HOST: db ## same as the database service name
