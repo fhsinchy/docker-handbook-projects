@@ -2,20 +2,23 @@ version: "3.8"
 
 services: 
     db:
-        build:
-            context: ./docker/postgres
-            dockerfile: Dockerfile.dev
+        image: postgres:12
         volumes: 
             - ./docker-volumes-data/db:/var/lib/postgresql/data
         environment:
-            POSTGRES_DB: ${DB_DATABASE}
-            POSTGRES_PASSWORD: ${DB_PASSWORD}
+            POSTGRES_DB: notesdb
+            POSTGRES_PASSWORD: secret
     api:
         build:
             context: .
             dockerfile: Dockerfile.dev
-        depends_on:
-            - db
+        environment: 
+            DB_CONNECTION: pg
+            DB_HOST: db ## same as the database service name
+            DB_PORT: 5432
+            DB_USER: postgres
+            DB_DATABASE: notesdb
+            DB_PASSWORD: secret
         volumes: 
             - /usr/app/node_modules
             - ./:/usr/app
