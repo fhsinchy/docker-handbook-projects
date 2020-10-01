@@ -1,11 +1,5 @@
 FROM ubuntu:latest
 
-ARG DIRNAME="nginx"
-ARG FILENAME="nginx-1.19.2"
-ARG EXTENSION="tar.gz"
-
-WORKDIR /${DIRNAME}
-
 RUN apt-get update && \
     apt-get install build-essential\ 
                     libpcre3 \
@@ -14,6 +8,14 @@ RUN apt-get update && \
                     zlib1g-dev \
                     libssl-dev \
                     -y
+
+RUN apt-get clean && rm -rf /var/lib/apt/lists/*
+
+ARG DIRNAME="nginx"
+ARG FILENAME="nginx-1.19.2"
+ARG EXTENSION="tar.gz"
+
+WORKDIR /${DIRNAME}
 
 ADD https://nginx.org/download/${FILENAME}.${EXTENSION} .
 
