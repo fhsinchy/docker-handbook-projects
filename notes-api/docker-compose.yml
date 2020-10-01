@@ -6,7 +6,7 @@ services:
             context: ./docker/postgres
             dockerfile: Dockerfile.dev
         volumes: 
-            - ./docker-volumes-data/db:/var/lib/pgsql/data
+            - ./docker-volumes-data/db:/var/lib/postgresql/data
         environment:
             POSTGRES_DB: ${DB_DATABASE}
             POSTGRES_PASSWORD: ${DB_PASSWORD}
