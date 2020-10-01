@@ -1,4 +1,4 @@
 {
     "verbose": true,
-    "ignore": ["*.test.js"]
+    "ignore": ["*.test.js", "./docker-volumes-data/"]
 }
