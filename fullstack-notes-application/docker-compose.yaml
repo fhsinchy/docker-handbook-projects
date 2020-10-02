@@ -3,6 +3,7 @@ version: "3.8"
 services: 
     db:
         image: postgres:12
+        container_name: notes-db
         volumes: 
             - ./docker-volumes-data/db:/var/lib/postgresql/data
         environment:
@@ -12,6 +13,8 @@ services:
         build: 
             context: ./api
             dockerfile: Dockerfile.dev
+        image: notes-api
+        container_name: notes-api
         volumes: 
             - /usr/app/node_modules
             - ./api:/usr/app
@@ -26,6 +29,8 @@ services:
         build:
             context: ./client
             dockerfile: Dockerfile.dev
+        image: notes-client
+        container_name: notes-client
         volumes: 
             - /usr/app/node_modules
             - ./client:/usr/app
@@ -35,5 +40,7 @@ services:
         build:
             context: ./nginx
             dockerfile: Dockerfile.dev
+        image: notes-router
+        container_name: notes-router
         ports: 
             - 80:80

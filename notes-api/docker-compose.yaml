@@ -13,7 +13,7 @@ services:
         build:
             context: .
             dockerfile: Dockerfile.dev
-        image: notes
+        image: notes-api
         container_name: notes-api
         environment: 
             DB_CONNECTION: pg
