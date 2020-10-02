@@ -40,5 +40,6 @@ services:
             dockerfile: Dockerfile.dev
         image: notes-router
         container_name: notes-router
+        restart: unless-stopped
         ports: 
             - 80:80
