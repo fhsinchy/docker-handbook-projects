@@ -2,6 +2,8 @@
 ## Production ##
 ################
 start:
+	docker container start db api client router
+build:
 	./boot.sh
 stop:
 	docker container stop router client api db
@@ -13,7 +15,7 @@ destroy: stop
 ##################
 ## Development ##
 #################
-dev:
+dev-start:
 	docker-compose up
 dev-build:
 	docker-compose up --build
