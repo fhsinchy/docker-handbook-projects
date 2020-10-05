@@ -2,7 +2,7 @@
 set -e
 
 printf "creating network --->\n"
-docker network create fullstack-notes-application-network
+docker network create fullstack-notes-application-network;
 printf "network created --->\n"
 
 printf "\n"
@@ -23,7 +23,7 @@ printf "\n"
 
 cd api;
 printf "creating api image --->\n"
-docker image build . --tag notes-api
+docker image build . --tag notes-api;
 printf "api image created --->\n"
 printf "starting api container --->\n"
 docker container run \
@@ -40,7 +40,7 @@ printf "\n"
 
 cd client;
 printf "creating client image --->\n"
-docker image build . --tag notes-client
+docker image build . --tag notes-client;
 printf "client image created --->\n"
 printf "starting client container --->\n"
 docker container run \
@@ -55,7 +55,7 @@ printf "\n"
 
 cd nginx;
 printf "creating router image --->\n"
-docker image build . --tag notes-router
+docker image build . --tag notes-router;
 printf "router image created --->\n"
 printf "starting router container --->\n"
 docker container run \
