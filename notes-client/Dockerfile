@@ -6,10 +6,9 @@ COPY ./package.json ./
 RUN npm install
 
 COPY . .
-
 RUN npm run build
 
-FROM nginx:mainline
+FROM nginx:stable
 
 EXPOSE 80
 
