@@ -8,8 +8,8 @@ build:
 stop:
 	docker container stop router client api db
 destroy: stop
-	docker network rm fullstack-note-application-network
-	docker container rm router client api db; \
+	docker network rm fullstack-note-application-network;
+	docker container rm router client api db;
 	docker image rm notes-router notes-client notes-api notes-db;
 
 ##################
