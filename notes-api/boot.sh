@@ -6,7 +6,6 @@ printf "network created --->\n"
 
 printf "\n"
 
-cd db;
 printf "starting db container --->\n"
 docker container run \
     --detach \
@@ -17,7 +16,6 @@ docker container run \
     postgres:12;
 printf "db container started --->\n"
 
-cd ..
 printf "\n"
 
 cd api;
