@@ -10,7 +10,7 @@ stop:
 destroy: stop
 	docker network rm notes-api-network
 	docker container rm api db
-	docker image rm notes-api notes-db
+	docker image rm notes-api
 
 ##################
 ## Development ##
