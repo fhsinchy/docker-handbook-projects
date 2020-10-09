@@ -19,6 +19,8 @@ dev-start:
 	docker-compose up --detach
 dev-build:
 	docker-compose up --detach --build
+dev-shell:
+	docker-compose exec api bash
 dev-stop:
 	docker-compose stop
 dev-destroy:
