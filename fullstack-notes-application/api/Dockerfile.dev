@@ -1,8 +1,12 @@
 FROM node:lts
 
+ENV NODE_ENV=development
+
 WORKDIR /usr/app
 
 COPY ./package.json .
 RUN npm install
 
-CMD [ "npm", "run", "dev" ]
+USER node
+
+CMD [ "./node_modules/.bin/nodemon", "--config", "nodemon.json", "bin/www" ]

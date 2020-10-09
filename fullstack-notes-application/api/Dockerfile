@@ -11,4 +11,6 @@ RUN npm install --only=prod
 
 COPY . .
 
-CMD [ "npm", "run", "start" ]
+USER node
+
+CMD [ "node", "bin/www" ]
