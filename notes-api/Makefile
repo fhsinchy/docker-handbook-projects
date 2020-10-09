@@ -16,9 +16,9 @@ destroy: stop
 ## Development ##
 #################
 dev-start:
-	docker-compose up
+	docker-compose up --detach
 dev-build:
-	docker-compose up --build
+	docker-compose up --detach --build
 dev-stop:
 	docker-compose stop
 dev-destroy:
