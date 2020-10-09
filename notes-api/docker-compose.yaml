@@ -23,7 +23,7 @@ services:
             DB_DATABASE: notesdb
             DB_PASSWORD: secret
         volumes: 
-            - /usr/app/node_modules
-            - ./api:/usr/app
+            - /home/node/app/node_modules
+            - ./api:/home/node/app
         ports: 
             - 3000:3000

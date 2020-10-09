@@ -2,11 +2,13 @@ FROM node:lts
 
 ENV NODE_ENV=development
 
-WORKDIR /usr/app
+USER node
+
+RUN mkdir -p /home/node/app
+
+WORKDIR /home/node/app
 
 COPY ./package.json .
 RUN npm install
-
-USER node
 
 CMD [ "./node_modules/.bin/nodemon", "--config", "nodemon.json", "bin/www" ]
