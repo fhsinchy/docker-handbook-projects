@@ -16,8 +16,8 @@ services:
         image: notes-api:dev
         container_name: notes-api-dev
         volumes: 
-            - /usr/app/node_modules
-            - ./api:/usr/app
+            - /home/node/app/node_modules
+            - ./api:/home/node/app
         environment: 
             DB_CONNECTION: pg
             DB_HOST: db ## same as the database service name
@@ -32,8 +32,8 @@ services:
         image: notes-client:dev
         container_name: notes-client-dev
         volumes: 
-            - /usr/app/node_modules
-            - ./client:/usr/app
+            - /home/node/app/node_modules
+            - ./client:/home/node/app
     nginx:
         build:
             context: ./nginx

@@ -1,10 +1,12 @@
 FROM node:lts
 
-WORKDIR /usr/app
+USER node
+
+RUN /home/node/app
+
+WORKDIR /home/node/app
 
 COPY ./package.json .
 RUN npm install
-
-USER node
 
 CMD [ "npm", "run", "serve" ]
