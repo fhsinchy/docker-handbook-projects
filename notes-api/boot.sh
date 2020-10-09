@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 
 printf "creating network --->\n"
 docker network create notes-api-network;
