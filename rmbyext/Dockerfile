@@ -9,4 +9,9 @@ RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
 RUN pip install git+https://github.com/fhsinchy/rmbyext.git#egg=rmbyext
 
+RUN useradd human && \
+    chown -R human /zone
+
+USER human
+
 ENTRYPOINT [ "rmbyext" ]
