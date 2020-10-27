@@ -2,7 +2,7 @@ FROM node:lts
 
 USER node
 
-RUN /home/node/app
+RUN mkdir -p /home/node/app
 
 WORKDIR /home/node/app
 
