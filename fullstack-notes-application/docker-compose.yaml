@@ -19,7 +19,6 @@ services:
             - /home/node/app/node_modules
             - ./api:/home/node/app
         environment: 
-            DB_CONNECTION: pg
             DB_HOST: db ## same as the database service name
             DB_PORT: 5432
             DB_USER: postgres

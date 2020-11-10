@@ -1,6 +1,6 @@
 module.exports = {
   development: {
-    client: process.env.DB_CONNECTION,
+    client: 'pg',
     connection: {
       host: process.env.DB_HOST,
       port: process.env.DB_PORT,
@@ -17,7 +17,7 @@ module.exports = {
   },
 
   staging: {
-    client: process.env.DB_CONNECTION,
+    client: 'pg',
     connection: {
       host: process.env.DB_HOST,
       port: process.env.DB_PORT,
@@ -28,7 +28,7 @@ module.exports = {
   },
 
   production: {
-    client: process.env.DB_CONNECTION,
+    client: 'pg',
     connection: {
       host: process.env.DB_HOST,
       port: process.env.DB_PORT,

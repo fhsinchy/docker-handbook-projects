@@ -16,7 +16,6 @@ services:
         image: notes-api:dev
         container_name: notes-api-dev
         environment: 
-            DB_CONNECTION: pg
             DB_HOST: db ## same as the database service name
             DB_PORT: 5432
             DB_USER: postgres
