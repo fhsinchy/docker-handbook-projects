@@ -1,13 +1,19 @@
 FROM node:lts as builder
 
-WORKDIR /usr/app
+USER node
+
+RUN mkdir -p /home/node/app
+
+WORKDIR /home/node/app
 
 COPY ./package.json ./
 RUN npm install
+
 COPY . .
 RUN npm run build
 
+FROM nginx:stable
+
 EXPOSE 80
 
-FROM nginx:stable
-COPY --from=builder /usr/app/dist /usr/share/nginx/html
+COPY --from=builder /home/node/app/dist /usr/share/nginx/html
