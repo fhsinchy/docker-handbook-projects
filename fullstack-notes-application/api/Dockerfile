@@ -1,4 +1,15 @@
-FROM node:lts
+FROM node:lts as base
+
+USER node
+
+RUN mkdir -p /home/node/app
+
+WORKDIR /home/node/app
+
+COPY ./package.json .
+RUN npm install --only=prod
+
+FROM node:lts-alpine
 
 EXPOSE 3000
 
@@ -10,9 +21,7 @@ RUN mkdir -p /home/node/app
 
 WORKDIR /home/node/app
 
-COPY ./package.json .
-RUN npm install --only=prod
-
 COPY . .
+COPY --from=base /home/node/app/node_modules  /home/node/app/node_modules
 
 CMD [ "node", "bin/www" ]
