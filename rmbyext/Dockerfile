@@ -1,14 +1,14 @@
-FROM python:3-buster
+FROM python:3-alpine
 
 WORKDIR /zone
 
-RUN apt-get update && \
-    apt-get install git -y && \
-    apt-get clean && rm -rf /var/lib/apt/lists/*
+RUN apk add --no-cache git
 
 RUN pip install git+https://github.com/fhsinchy/rmbyext.git#egg=rmbyext
 
-RUN useradd human && \
+RUN apk del git
+
+RUN adduser -S human && \
     chown -R human /zone
 
 USER human
