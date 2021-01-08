@@ -10,7 +10,7 @@ printf "\n"
 printf "starting db container --->\n"
 docker container run \
     --detach \
-    --name=db \
+    --name=notes-db \
     --env POSTGRES_DB=notesdb \
     --env POSTGRES_PASSWORD=secret \
     --network=fullstack-notes-application-network-backend \
@@ -26,7 +26,7 @@ printf "api image created --->\n"
 printf "starting api container --->\n"
 docker container run \
     --detach \
-    --name=api \
+    --name=notes-api \
     --env-file .env \
     --network=fullstack-notes-application-network-backend \
     notes-api;
@@ -49,7 +49,7 @@ printf "client image created --->\n"
 printf "starting client container --->\n"
 docker container run \
     --detach \
-    --name=client \
+    --name=notes-client \
     --network=fullstack-notes-application-network-frontend \
     notes-client;
 printf "client container started --->\n"
@@ -64,7 +64,7 @@ printf "router image created --->\n"
 printf "creating router container --->\n"
 docker container create \
     --publish=8080:80 \
-    --name=router \
+    --name=notes-router \
     notes-router;
 printf "router container created --->\n"
 printf "adding router to backend network --->\n"

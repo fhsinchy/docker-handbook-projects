@@ -2,14 +2,14 @@
 ## Production ##
 ################
 start:
-	docker container start db api client router
+	docker container start notes-db notes-api notes-client notes-router
 build:
 	./boot.sh
 stop:
-	docker container stop router client api db
+	docker container stop notes-router notes-client notes-api notes-db
 destroy: stop
 	docker network rm fullstack-notes-application-network-backend fullstack-notes-application-network-frontend;
-	docker container rm router client api db;
+	docker container rm notes-router notes-client notes-api notes-db;
 	docker image rm notes-router notes-client notes-api;
 
 ##################
