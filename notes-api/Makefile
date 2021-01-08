@@ -6,10 +6,10 @@ start:
 build:
 	./boot.sh
 stop:
-	docker container stop api db
+	docker container stop notes-api notes-db
 destroy: stop
 	docker network rm notes-api-network
-	docker container rm api db
+	docker container rm notes-api notes-db
 	docker image rm notes-api
 
 ##################
