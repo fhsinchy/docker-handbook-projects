@@ -1,10 +1,6 @@
-FROM node:lts as builder
+FROM node:lts-alpine as builder
 
-USER node
-
-RUN mkdir -p /home/node/app
-
-WORKDIR /home/node/app
+WORKDIR /app
 
 COPY ./package.json ./
 RUN npm install
@@ -16,4 +12,4 @@ FROM nginx:stable-alpine
 
 EXPOSE 80
 
-COPY --from=builder /home/node/app/dist /usr/share/nginx/html
+COPY --from=builder /app/dist /usr/share/nginx/html
