@@ -1,10 +1,8 @@
-FROM node:lts as base
+FROM node:lts-alpine as builder
 
-USER node
+RUN apk add --no-cache python make g++
 
-RUN mkdir -p /home/node/app
-
-WORKDIR /home/node/app
+WORKDIR /app
 
 COPY ./package.json .
 RUN npm install --only=prod
@@ -22,6 +20,6 @@ RUN mkdir -p /home/node/app
 WORKDIR /home/node/app
 
 COPY . .
-COPY --from=base /home/node/app/node_modules  /home/node/app/node_modules
+COPY --from=builder /home/node/app/node_modules  /home/node/app/node_modules
 
 CMD [ "node", "bin/www" ]

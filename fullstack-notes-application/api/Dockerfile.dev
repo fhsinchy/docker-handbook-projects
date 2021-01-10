@@ -13,7 +13,7 @@ ENV NODE_ENV=development
 
 USER node
 
-RUN mkdir /home/node/app
+RUN mkdir -p /home/node/app
 
 WORKDIR /home/node/app
 
