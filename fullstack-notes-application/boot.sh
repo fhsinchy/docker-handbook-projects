@@ -30,7 +30,7 @@ docker container run \
     --env-file .env \
     --network=fullstack-notes-application-network-backend \
     notes-api;
-docker container exec api npm run db:migrate;
+docker container exec notes-api npm run db:migrate;
 printf "api container started --->\n"
 
 cd ..
@@ -68,13 +68,13 @@ docker container create \
     notes-router;
 printf "router container created --->\n"
 printf "adding router to backend network --->\n"
-docker network connect fullstack-notes-application-network-backend router
+docker network connect fullstack-notes-application-network-backend notes-router
 printf "router added to backend network --->\n"
 printf "adding router to frontend network --->\n"
-docker network connect fullstack-notes-application-network-frontend router
+docker network connect fullstack-notes-application-network-frontend notes-router
 printf "router added to frontend network --->\n"
 printf "starting router container --->\n"
-docker container start router;
+docker container start notes-router;
 printf "router container started --->\n"
 
 cd ..

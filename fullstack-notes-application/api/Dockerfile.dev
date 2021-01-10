@@ -1,4 +1,13 @@
-FROM node:lts
+FROM node:lts-alpine as builder
+
+RUN apk add --no-cache python make g++
+
+WORKDIR /app
+
+COPY ./package.json .
+RUN npm install
+
+FROM node:lts-alpine
 
 ENV NODE_ENV=development
 
@@ -8,7 +17,7 @@ RUN mkdir /home/node/app
 
 WORKDIR /home/node/app
 
-COPY ./package.json .
-RUN npm install
+COPY . .
+COPY --from=builder /app/node_modules /home/node/app/node_modules
 
 CMD [ "./node_modules/.bin/nodemon", "--config", "nodemon.json", "bin/www" ]
