@@ -27,7 +27,11 @@ printf "starting api container --->\n"
 docker container run \
     --detach \
     --name=notes-api \
-    --env-file .env \
+    --env DB_HOST=notes-db \
+    --env DB_PORT=5432 \
+    --env DB_USER=postgres \
+    --env DB_DATABASE=notesdb \
+    --env DB_PASSWORD=secret \
     --network=fullstack-notes-application-network-backend \
     notes-api;
 docker container exec notes-api npm run db:migrate;
