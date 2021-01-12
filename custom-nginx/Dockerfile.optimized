@@ -1,22 +1,21 @@
 FROM alpine:latest
 
-RUN apk add --no-cache \
-            --virtual .build-deps \
-            build-base \ 
-            pcre \
-            pcre-dev \
-            zlib \
-            zlib-dev \
-            openssl-dev
+EXPOSE 80
 
 ARG FILENAME="nginx-1.19.2"
 ARG EXTENSION="tar.gz"
 
 ADD https://nginx.org/download/${FILENAME}.${EXTENSION} .
 
-RUN tar -xvf ${FILENAME}.${EXTENSION} && rm ${FILENAME}.${EXTENSION}
-
-RUN cd ${FILENAME} && \
+RUN apk add --no-cache pcre zlib && \
+    apk add --no-cache \
+            --virtual .build-deps \
+            build-base \ 
+            pcre-dev \
+            zlib-dev \
+            openssl-dev && \
+    tar -xvf ${FILENAME}.${EXTENSION} && rm ${FILENAME}.${EXTENSION} && \
+    cd ${FILENAME} && \
     ./configure \
         --sbin-path=/usr/bin/nginx \
         --conf-path=/etc/nginx/nginx.conf \
@@ -25,9 +24,8 @@ RUN cd ${FILENAME} && \
         --with-pcre \
         --pid-path=/var/run/nginx.pid \
         --with-http_ssl_module && \
-    make && make install
-
-RUN rm -rf /${FILENAME}}
-RUN apk del .build-deps
+    make && make install && \
+    cd / && rm -rfv /${FILENAME} && \
+    apk del .build-deps
 
 CMD ["nginx", "-g", "daemon off;"]
