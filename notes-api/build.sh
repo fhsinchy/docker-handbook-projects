@@ -31,6 +31,7 @@ then
 else
   docker container run \
     --detach \
+    --volume notes-api-db-data:/var/lib/postgresql/data \
     --name=notes-db \
     --env POSTGRES_DB=notesdb \
     --env POSTGRES_PASSWORD=secret \
@@ -53,7 +54,6 @@ then
 else
 docker container run \
     --detach \
-    --volume notes-api-db-data:/var/lib/postgresql/data \
     --name=notes-api \
     --env DB_HOST=notes-db \
     --env DB_DATABASE=notesdb \
