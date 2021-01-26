@@ -1,41 +1,49 @@
 #!/bin/bash
 set -e
 
-if docker network ls | grep -q 'notes-api-network';
+NETWORK_NAME="notes-api-network"
+DB_CONTAINER_VOLUME_NAME="notes-db-data"
+API_IMAGE_NAME="notes-api"
+API_CONTAINER_NAME="notes-api"
+DB_CONTAINER_NAME="notes-db"
+
+DB_NAME="notesdb"
+DB_PASSWORD="secret"
+
+if docker network ls | grep -q $NETWORK_NAME;
 then
   printf "network found --->\n"
 else
   printf "creating network --->\n"
-  docker network create notes-api-network;
+  docker network create $NETWORK_NAME;
   printf "network created --->\n"
 fi
 
 printf "\n"
 
-if docker volume ls | grep -q 'notes-db-data';
+if docker volume ls | grep -q $DB_CONTAINER_VOLUME_NAME;
 then
   printf "volume found --->\n"
 else
   printf "creating volume --->\n"
-  docker volume create notes-db-data;
+  docker volume create $DB_CONTAINER_VOLUME_NAME;
   printf "volume created --->\n"
 fi
 
 printf "\n"
 
 printf "starting db container --->\n"
-if docker container ls --all | grep -q 'notes-db';
+  if docker container ls --all | grep -q $DB_CONTAINER_NAME;
 then
-  printf "db container found --->\n"
-  docker container start notes-db
+  docker container start $DB_CONTAINER_NAME
 else
   docker container run \
     --detach \
-    --volume notes-api-db-data:/var/lib/postgresql/data \
-    --name=notes-db \
-    --env POSTGRES_DB=notesdb \
-    --env POSTGRES_PASSWORD=secret \
-    --network=notes-api-network \
+    --volume $DB_CONTAINER_VOLUME_NAME:/var/lib/postgresql/data \
+    --name=$DB_CONTAINER_NAME \
+    --env POSTGRES_DB=$DB_NAME \
+    --env POSTGRES_PASSWORD=$DB_PASSWORD \
+    --network=$NETWORK_NAME \
     postgres:12;
 fi
 printf "db container started --->\n"
@@ -44,24 +52,23 @@ printf "\n"
 
 cd api;
 printf "creating api image --->\n"
-docker image build . --tag notes-api;
+docker image build . --tag $API_IMAGE_NAME;
 printf "api image created --->\n"
 printf "starting api container --->\n"
-if docker container ls --all | grep -q 'notes-api';
+if docker container ls --all | grep -q $API_CONTAINER_NAME;
 then
-  printf "api container found --->\n"
-  docker container start notes-api
+  docker container start $API_CONTAINER_NAME
 else
 docker container run \
     --detach \
-    --name=notes-api \
-    --env DB_HOST=notes-db \
-    --env DB_DATABASE=notesdb \
-    --env DB_PASSWORD=secret \
+    --name=$API_CONTAINER_NAME \
+    --env DB_HOST=$DB_CONTAINER_NAME \
+    --env DB_DATABASE=$DB_NAME \
+    --env DB_PASSWORD=$DB_PASSWORD \
     --publish=3000:3000 \
-    --network=notes-api-network \
-    notes-api;
-docker container exec notes-api npm run db:migrate;
+    --network=$NETWORK_NAME \
+    $API_IMAGE_NAME;
+docker container exec $API_CONTAINER_NAME npm run db:migrate;
 fi
 printf "api container started --->\n"
 

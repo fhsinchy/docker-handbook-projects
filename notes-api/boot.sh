@@ -1,22 +1,25 @@
 #!/bin/bash
 set -e
 
-printf "starting db container --->\n"
-if docker container ls --all | grep -q 'notes-db';
+API_CONTAINER_NAME="notes-api"
+DB_CONTAINER_NAME="notes-db"
+
+if docker container ls --all | grep -q $DB_CONTAINER_NAME;
 then
-  printf "db container found --->\n"
-  docker container start notes-db;
+  printf "starting db container --->\n"
+  docker container start $DB_CONTAINER_NAME;
+  printf "db container started --->\n"
 else
   printf "db container not found --->\n"
 fi
 
 printf "\n"
 
-printf "starting api container --->\n"
-if docker container ls --all | grep -q 'notes-api';
+if docker container ls --all | grep -q $API_CONTAINER_NAME;
 then
-  printf "api container found --->\n"
-  docker container start notes-db;
+  printf "starting api container --->\n"
+  docker container start $API_CONTAINER_NAME;
+  printf "api container started --->\n"
 else
   printf "api container not found --->\n"
 fi
