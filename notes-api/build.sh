@@ -33,7 +33,7 @@ fi
 printf "\n"
 
 printf "starting db container --->\n"
-  if docker container ls --all | grep -q $DB_CONTAINER_NAME;
+if docker container ls --all | grep -q $DB_CONTAINER_NAME;
 then
   docker container start $DB_CONTAINER_NAME
 else
@@ -59,16 +59,16 @@ if docker container ls --all | grep -q $API_CONTAINER_NAME;
 then
   docker container start $API_CONTAINER_NAME
 else
-docker container run \
-    --detach \
-    --name=$API_CONTAINER_NAME \
-    --env DB_HOST=$DB_CONTAINER_NAME \
-    --env DB_DATABASE=$DB_NAME \
-    --env DB_PASSWORD=$DB_PASSWORD \
-    --publish=3000:3000 \
-    --network=$NETWORK_NAME \
-    $API_IMAGE_NAME;
-docker container exec $API_CONTAINER_NAME npm run db:migrate;
+  docker container run \
+      --detach \
+      --name=$API_CONTAINER_NAME \
+      --env DB_HOST=$DB_CONTAINER_NAME \
+      --env DB_DATABASE=$DB_NAME \
+      --env DB_PASSWORD=$DB_PASSWORD \
+      --publish=3000:3000 \
+      --network=$NETWORK_NAME \
+      $API_IMAGE_NAME;
+  docker container exec $API_CONTAINER_NAME npm run db:migrate;
 fi
 printf "api container started --->\n"
 
