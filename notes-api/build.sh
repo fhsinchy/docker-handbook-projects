@@ -68,4 +68,4 @@ printf "api container started --->\n"
 cd ..
 printf "\n"
 
-printf "all containers are up and running"
+printf "build script finished\n\n"
