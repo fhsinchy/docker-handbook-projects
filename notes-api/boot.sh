@@ -10,7 +10,7 @@ printf "\n"
 printf "starting db container --->\n"
 docker container run \
     --detach \
-    --name=notes-db \
+    --name=notes-api-db \
     --env POSTGRES_DB=notesdb \
     --env POSTGRES_PASSWORD=secret \
     --network=notes-api-network \
@@ -27,7 +27,7 @@ printf "starting api container --->\n"
 docker container run \
     --detach \
     --name=notes-api \
-    --env DB_HOST=notes-db \
+    --env DB_HOST=notes-api-db \
     --env DB_PORT=5432 \
     --env DB_USER=postgres \
     --env DB_DATABASE=notesdb \
