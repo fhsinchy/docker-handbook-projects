@@ -28,8 +28,6 @@ docker container run \
     --detach \
     --name=notes-api \
     --env DB_HOST=notes-api-db \
-    --env DB_PORT=5432 \
-    --env DB_USER=postgres \
     --env DB_DATABASE=notesdb \
     --env DB_PASSWORD=secret \
     --publish=3000:3000 \
