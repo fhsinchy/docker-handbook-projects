@@ -2,15 +2,13 @@
 ## Production ##
 ################
 start:
-	docker container start db api
-build:
 	./boot.sh
+build:
+	./build.sh
 stop:
-	docker container stop notes-api notes-db
+	./shutdown.sh
 destroy: stop
-	docker network rm notes-api-network
-	docker container rm notes-api notes-db
-	docker image rm notes-api
+	./destroy.sh
 
 ##################
 ## Development ##
