@@ -17,8 +17,6 @@ services:
         container_name: notes-api-dev
         environment: 
             DB_HOST: db ## same as the database service name
-            DB_PORT: 5432
-            DB_USER: postgres
             DB_DATABASE: notesdb
             DB_PASSWORD: secret
         volumes: 
