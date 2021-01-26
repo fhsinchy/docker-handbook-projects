@@ -5,10 +5,12 @@ services:
         image: postgres:12
         container_name: notes-db-dev
         volumes: 
-            - notes-db-dev-data:/var/lib/postgresql/data
+            - db-data:/var/lib/postgresql/data
         environment:
             POSTGRES_DB: notesdb
             POSTGRES_PASSWORD: secret
+        networks:
+            - backend
     api:
         build: 
             context: ./api
@@ -24,6 +26,8 @@ services:
             DB_USER: postgres
             DB_DATABASE: notesdb
             DB_PASSWORD: secret
+        networks:
+            - backend
     client:
         build:
             context: ./client
@@ -33,6 +37,8 @@ services:
         volumes: 
             - /home/node/app/node_modules
             - ./client:/home/node/app
+        networks:
+            - frontend
     nginx:
         build:
             context: ./nginx
@@ -41,7 +47,19 @@ services:
         container_name: notes-router-dev
         restart: unless-stopped
         ports: 
-            - 80:80
+            - 8080:80
+        networks:
+            - backend
+            - frontend
 
 volumes:
-    notes-db-dev-data:
+    db-data:
+        name: notes-db-dev-data
+
+networks: 
+    frontend:
+        name: fullstack-notes-application-network-frontend
+        driver: bridge
+    backend:
+        name: fullstack-notes-application-network-backend
+        driver: bridge
