@@ -5,7 +5,7 @@ services:
         image: postgres:12
         container_name: notes-db-dev
         volumes: 
-            - notes-db-dev-data:/var/lib/postgresql/data
+            - db-data:/var/lib/postgresql/data
         environment:
             POSTGRES_DB: notesdb
             POSTGRES_PASSWORD: secret
@@ -26,4 +26,5 @@ services:
             - 3000:3000
 
 volumes:
-    notes-db-dev-data:
+    db-data:
+        name: notes-db-dev-data
