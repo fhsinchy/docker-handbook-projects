@@ -1,6 +1,5 @@
 {
-  "name": "api",
-  "version": "1.0.0",
+  "name": "notes-api",
   "main": "bin/www",
   "scripts": {
     "knex": "knex",
@@ -11,9 +10,6 @@
     "lint": "eslint --ext .js --cache --fix --ignore-path .gitignore .",
     "test": "cross-env NODE_ENV=test jest"
   },
-  "keywords": [],
-  "author": "Farhan Hasin Chowdhury <mail@farhan.info>",
-  "license": "MIT",
   "dependencies": {
     "@hapi/joi": "^17.1.1",
     "celebrate": "^12.1.1",
