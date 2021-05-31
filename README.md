@@ -1,7 +1,5 @@
 # Docker Handbook Projects
 
-<a href="https://www.buymeacoffee.com/farhanhasin" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" height="50" width="auto"></a>
-
 ![...](./docker-handbook-github.png)
 
 | :bell: NOTIFICATION |
