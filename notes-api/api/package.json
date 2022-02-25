@@ -33,7 +33,7 @@
     "lint-staged": "^10.1.7",
     "nodemon": "^2.0.3",
     "prettier": "^2.0.5",
-    "sqlite3": "^4.2.0",
+    "sqlite3": "^5.0.0",
     "supertest": "^4.0.2"
   },
   "lint-staged": {
